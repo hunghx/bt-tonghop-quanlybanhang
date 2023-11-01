@@ -88,7 +88,7 @@ foreign key(masp) references sanpham(masp)
 -- chèn dữ liệu 
 -- khách hàng
 insert into khachhang (makh,tenkh,soDt) value
-('KH01','Nguyễn Văn A','0984727353'),
+('L001','Nguyễn Văn G','0992727353'),
 ('KH02','Nguyễn Văn B','0984227353'),
 ('KH03','Nguyễn Văn C','0984527353'),
 ('KH04','Nguyễn Văn D','0984627353'),
@@ -112,5 +112,36 @@ insert into nhanvien value
 ('N004','Lê Đức Phát',1,'Hồ Chí Minh','2004-05-30','097439473','phat@gmail.com','Hồ CHí Minh',null,'N001'),
 ('N005','Nguyễn Thị Minh Châu',1,'Hồ Chí Minh','1998-1-18','097438756','Chau@gmail.com','Hồ chí Minh',null,'N001');
 
+-- dữ liệu bẩng loại sp
+insert into loaisp  value 
+('L001','QUẦN',''),
+('L002','Mũ',''),
+('L003','TRang Sức',''),
+('L004','ÁO','');
+
+-- thêm san phẩm
+insert into sanpham value
+('SP01','L004','Áo sơ mi nam','chiếc',''),
+('SP02','L001','Quần sooc','chiếc',''),
+('SP03','L002','Mũ LV','chiếc',''),
+('SP04','L003','Nhẫn cưới','cặp',''),
+('SP05','L004','Áo dài nữ','bộ','');
+delete from sanpham where masp like 'SP04';
+select * from sanpham;
+
+select *
+from sanpham sp left join loaisp lsp on sp.maloaisp = lsp.maloaisp
+union 
+ select *
+from sanpham sp right join loaisp lsp on sp.maloaisp = lsp.maloaisp
+ ;
+
+
 select * from nhanvien where noisinh like 'Hà Nam' or noisinh like 'Hồ Chí Minh';
 select * from nhanvien where ngaysinh between '2000-2-18' and '2005-12-12';
+
+
+SELECT n.manv, n.hoten,m.hoten as `nguoi quan ly`
+ FROM NHANVIEN as n 
+ INNER JOIN NHANVIEN as m 
+ ON n.MANQL = m.MANV;
