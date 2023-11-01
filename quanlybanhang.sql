@@ -85,4 +85,32 @@ foreign key(sopx) references phieuxuat(sopx),
 foreign key(masp) references sanpham(masp)
 );
 
+-- chèn dữ liệu 
+-- khách hàng
+insert into khachhang (makh,tenkh,soDt) value
+('KH01','Nguyễn Văn A','0984727353'),
+('KH02','Nguyễn Văn B','0984227353'),
+('KH03','Nguyễn Văn C','0984527353'),
+('KH04','Nguyễn Văn D','0984627353'),
+('KH05','Nguyễn Văn E','0984827353');
 
+select makh,tenkh,soDt from khachhang;
+
+
+-- chỉnh sửa bản ghi
+update khachhang set sodt = '0987654321' where makh like 'kh03';
+update khachhang set tenkh = 'nguyen văn d' where sodt like '0984_27353'; -- % đại diện cho 1 chuôi, _ đại diện cho 1 kí tự
+-- xóa 1 hoặc nhiều bản ghi 
+delete from khachhang where makh LIKE 'kh03';
+DELETE FROM khachhang;
+
+-- thêm dữ liệu bảng nhân viên
+insert into nhanvien value
+-- ('N001','Hồ Xuân Hùng',1,'Nghệ An','1999-06-18','0974364738','hung@gmail.com','Nghệ An',null,null),
+('N002','Trịnh công Phúc',1,'Hồ Chí Minh','2000-02-18','0974364928','phuc@gmail.com','Hồ Chí Minh',null,'N001'),
+('N003','Cao Cường',1,'Hà Nam','2001-06-20','0974937738','cuong@gmail.com','Hà Nam',null,'N002'),
+('N004','Lê Đức Phát',1,'Hồ Chí Minh','2004-05-30','097439473','phat@gmail.com','Hồ CHí Minh',null,'N001'),
+('N005','Nguyễn Thị Minh Châu',1,'Hồ Chí Minh','1998-1-18','097438756','Chau@gmail.com','Hồ chí Minh',null,'N001');
+
+select * from nhanvien where noisinh like 'Hà Nam' or noisinh like 'Hồ Chí Minh';
+select * from nhanvien where ngaysinh between '2000-2-18' and '2005-12-12';
